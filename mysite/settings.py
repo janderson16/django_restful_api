@@ -126,5 +126,3 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 GOOGLE_MAPS_API_KEY = config('GOOGLE_MAPS_API_KEY')
-
-# GOOGLE_MAPS_API_KEY = os.environ.get('GOOGLE_MAPS_API_KEY')
