@@ -129,4 +129,5 @@ GOOGLE_MAPS_API_KEY = config('GOOGLE_MAPS_API_KEY', default='')
 OXFORD_APP_ID = config('OXFORD_APP_ID', default='')
 OXFORD_APP_KEY = config('OXFORD_APP_KEY', default='')
 
+import django_heroku
 django_heroku.settings(locals())
