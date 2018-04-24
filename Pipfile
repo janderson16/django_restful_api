@@ -10,6 +10,7 @@ django = "*"
 gunicorn = "*"
 django-heroku = "*"
 python-decouple = "*"
+pygithub = "*"
 requests = "*"
 
 [requires]
