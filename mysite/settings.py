@@ -27,7 +27,9 @@ SECRET_KEY = '^u+6kk%-a&stx8_lwwwr1#9*_eyc*b9h9)2zmkr$$y-#*&^$lt'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'restful-apis.herokuapp.com'
+]
 
 
 # Application definition
