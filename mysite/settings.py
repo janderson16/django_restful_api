@@ -125,4 +125,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-GOOGLE_MAPS_API_KEY = config('GOOGLE_MAPS_API_KEY')
+GOOGLE_MAPS_API_KEY = config('GOOGLE_MAPS_API_KEY', default='')
+OXFORD_APP_ID = config('OXFORD_APP_ID', default='')
+OXFORD_APP_KEY = config('OXFORD_APP_KEY', default='')

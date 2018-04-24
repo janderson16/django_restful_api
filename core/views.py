@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.conf import settings
+from github import Github, GithubException
+from .forms import DictionaryForm
 import requests
 
 def home(request):
@@ -35,3 +37,36 @@ def github(request):
             'remaining': response.headers['X-RateLimit-Remaining'],
         }
     return render(request, 'core/github.html', {'search_result': search_result})
+
+def github_client(request):
+    search_result = {}
+    if 'username' in request.GET:
+        username = request.GET['username']
+        client = Github()
+
+        try:
+            user = client.get_user(username)
+            search_result['name'] = user.name
+            search_result['login'] = user.login
+            search_result['public_repos'] = user.public_repos
+            search_result['success'] = True
+        except GithubException as ge:
+            search_result['message'] = ge.data['message']
+            search_result['success'] = False
+
+        rate_limit = client.get_rate_limit()
+        search_result['rate'] = {
+            'limit': rate_limit.rate.limit,
+            'remaining': rate_limit.rate.remaining,
+        }
+    return render(request, 'core/github.html', {'search_result': search_result})
+
+def oxford(request):
+    search_result = {}
+    if 'word' in request.GET:
+        form = DictionaryForm(request.GET)
+        if form.is_valid():
+            search_result = form.search()
+    else:
+        form = DictionaryForm()
+    return render(request, 'core/oxford.html', {'form': form, 'search_result': search_result})
